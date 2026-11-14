@@ -1,0 +1,21 @@
+@model List<Producto>
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <title>Catálogo - Plaza Campesina</title>
+</head>
+
+<body>
+    <h1>Catálogo</h1>
+
+    <ul>
+        @foreach (var producto in Model)
+        {
+            <li><a asp-action="Buscar" asp-route-id="@producto.Id">@producto.Nombre</a> - $@producto.Precio</li>
+        }
+    </ul>
+</body>
+
+</html>

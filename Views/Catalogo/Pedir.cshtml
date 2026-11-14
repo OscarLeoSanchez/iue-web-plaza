@@ -1,0 +1,35 @@
+@model NuevoPedido
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <title>Pedir @Model.Producto - Plaza Campesina</title>
+</head>
+
+<body>
+    <h1>Pedir @Model.Producto</h1>
+
+    <form method="post" asp-action="Confirmar">
+        <div asp-validation-summary="ModelOnly"></div>
+        <input type="hidden" asp-for="Producto">
+
+        <label>
+            Cliente
+            <input asp-for="Cliente">
+            <span asp-validation-for="Cliente"></span>
+        </label>
+
+        <label>
+            Cantidad
+            <input asp-for="Cantidad">
+            <span asp-validation-for="Cantidad"></span>
+        </label>
+
+        <button type="submit">Enviar pedido</button>
+    </form>
+
+    <p><a asp-action="Listar">Volver al catálogo</a></p>
+</body>
+
+</html>

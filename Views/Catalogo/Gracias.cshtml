@@ -1,0 +1,17 @@
+@model Pedido
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <title>Gracias - Plaza Campesina</title>
+</head>
+
+<body>
+    <h1>Gracias, @Model.Cliente</h1>
+    <p>Tu pedido número @Model.Id quedó guardado: @Model.Cantidad de @Model.Producto.</p>
+
+    <p><a asp-action="Listar">Volver al catálogo</a></p>
+</body>
+
+</html>

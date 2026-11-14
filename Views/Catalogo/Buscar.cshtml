@@ -1,0 +1,19 @@
+@model Producto
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <title>@Model.Nombre - Plaza Campesina</title>
+</head>
+
+<body>
+    <h1>@Model.Nombre</h1>
+    <p>Precio: $@Model.Precio</p>
+
+    <p><a asp-action="Pedir" asp-route-id="@Model.Id">Pedir este producto</a></p>
+
+    <p><a asp-action="Listar">Volver al catálogo</a></p>
+</body>
+
+</html>
