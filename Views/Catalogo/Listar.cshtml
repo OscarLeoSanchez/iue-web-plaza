@@ -1,21 +1,52 @@
 @model List<Producto>
-<!DOCTYPE html>
-<html lang="es">
+@{
+    ViewData["Title"] = "Catálogo";
+}
 
-<head>
-    <meta charset="utf-8">
-    <title>Catálogo - Plaza Campesina</title>
-</head>
+<header class="hero py-5 mb-5">
+    <div class="container position-relative" style="z-index: 1;">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <span class="badge rounded-pill text-bg-light text-plaza mb-3 px-3 py-2">
+                    <i class="bi bi-stars me-1"></i> Lo mejor de la plaza
+                </span>
+                <h1 class="display-5 fw-bold mb-3">Frescos, locales y llenos de sabor</h1>
+                <p class="lead mb-0 text-white-50">Explora nuestros productos y prepara tu próximo pedido.</p>
+            </div>
+        </div>
+    </div>
+</header>
 
-<body>
-    <h1>Catálogo</h1>
+<section class="container">
+    <div class="d-flex justify-content-between align-items-end mb-4">
+        <div>
+            <p class="text-uppercase text-plaza fw-bold small mb-1">Nuestra selección</p>
+            <h2 class="page-heading h2 mb-0">Catálogo de productos</h2>
+        </div>
+        <span class="text-secondary d-none d-sm-inline">@Model.Count producto@(Model.Count == 1 ? "" : "s")</span>
+    </div>
 
-    <ul>
+    <div class="row g-4">
         @foreach (var producto in Model)
         {
-            <li><a asp-action="Buscar" asp-route-id="@producto.Id">@producto.Nombre</a> - $@producto.Precio</li>
+            <div class="col-sm-6 col-lg-4">
+                <article class="card product-card">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <div class="product-icon mb-4">
+                            <i class="bi bi-basket"></i>
+                        </div>
+                        <h3 class="h5 fw-bold">@producto.Nombre</h3>
+                        <p class="text-secondary mb-4">Producto fresco disponible para pedido.</p>
+                        <div class="mt-auto d-flex align-items-center justify-content-between gap-3">
+                            <span class="price-badge px-3 py-2">$@producto.Precio.ToString("N0")</span>
+                            <a asp-action="Buscar" asp-route-id="@producto.Id"
+                               class="btn btn-plaza px-3" aria-label="Ver @producto.Nombre">
+                                Ver producto <i class="bi bi-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
         }
-    </ul>
-</body>
-
-</html>
+    </div>
+</section>

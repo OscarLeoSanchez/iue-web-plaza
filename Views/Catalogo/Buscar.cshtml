@@ -1,19 +1,33 @@
 @model Producto
-<!DOCTYPE html>
-<html lang="es">
+@{
+    ViewData["Title"] = Model.Nombre;
+}
 
-<head>
-    <meta charset="utf-8">
-    <title>@Model.Nombre - Plaza Campesina</title>
-</head>
+<section class="container py-5">
+    <a asp-action="Listar" class="text-decoration-none text-secondary mb-4 d-inline-flex align-items-center">
+        <i class="bi bi-arrow-left me-2"></i> Volver al catálogo
+    </a>
 
-<body>
-    <h1>@Model.Nombre</h1>
-    <p>Precio: $@Model.Precio</p>
-
-    <p><a asp-action="Pedir" asp-route-id="@Model.Id">Pedir este producto</a></p>
-
-    <p><a asp-action="Listar">Volver al catálogo</a></p>
-</body>
-
-</html>
+    <div class="card detail-card overflow-hidden">
+        <div class="row g-0 align-items-center">
+            <div class="col-md-5 p-5 text-center">
+                <div class="detail-icon mx-auto">
+                    <i class="bi bi-basket2"></i>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="card-body p-4 p-md-5">
+                    <span class="badge rounded-pill text-bg-success mb-3 px-3 py-2">Disponible</span>
+                    <h1 class="display-6 fw-bold mb-3">@Model.Nombre</h1>
+                    <p class="text-secondary fs-5 mb-4">Seleccionado directamente de nuestra plaza campesina.</p>
+                    <div class="d-flex flex-wrap align-items-center gap-3">
+                        <span class="price-badge fs-4 px-4 py-2">$@Model.Precio.ToString("N0")</span>
+                        <a asp-action="Pedir" asp-route-id="@Model.Id" class="btn btn-plaza btn-lg px-4">
+                            Pedir este producto <i class="bi bi-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

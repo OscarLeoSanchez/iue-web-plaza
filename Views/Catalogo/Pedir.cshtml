@@ -1,35 +1,51 @@
 @model NuevoPedido
-<!DOCTYPE html>
-<html lang="es">
+@{
+    ViewData["Title"] = $"Pedir {Model.Producto}";
+}
 
-<head>
-    <meta charset="utf-8">
-    <title>Pedir @Model.Producto - Plaza Campesina</title>
-</head>
+<section class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <a asp-action="Listar" class="text-decoration-none text-secondary mb-4 d-inline-flex align-items-center">
+                <i class="bi bi-arrow-left me-2"></i> Volver al catálogo
+            </a>
 
-<body>
-    <h1>Pedir @Model.Producto</h1>
+            <div class="card form-card">
+                <div class="card-body p-4 p-md-5">
+                    <div class="d-flex align-items-center gap-3 mb-4">
+                        <span class="product-icon flex-shrink-0"><i class="bi bi-basket2"></i></span>
+                        <div>
+                            <p class="text-uppercase text-plaza fw-bold small mb-1">Nuevo pedido</p>
+                            <h1 class="h3 mb-0">@Model.Producto</h1>
+                        </div>
+                    </div>
 
-    <form method="post" asp-action="Confirmar">
-        <div asp-validation-summary="ModelOnly"></div>
-        <input type="hidden" asp-for="Producto">
+                    <form method="post" asp-action="Confirmar">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+                        <input type="hidden" asp-for="Producto" />
 
-        <label>
-            Cliente
-            <input asp-for="Cliente">
-            <span asp-validation-for="Cliente"></span>
-        </label>
+                        <div class="mb-4">
+                            <label asp-for="Cliente" class="form-label fw-bold">Nombre del cliente</label>
+                            <input asp-for="Cliente" class="form-control" placeholder="Escribe tu nombre completo" />
+                            <span asp-validation-for="Cliente" class="text-danger small"></span>
+                        </div>
 
-        <label>
-            Cantidad
-            <input asp-for="Cantidad">
-            <span asp-validation-for="Cantidad"></span>
-        </label>
+                        <div class="mb-4">
+                            <label asp-for="Cantidad" class="form-label fw-bold">Cantidad</label>
+                            <input asp-for="Cantidad" type="number" min="1" max="100" class="form-control" />
+                            <span asp-validation-for="Cantidad" class="text-danger small"></span>
+                        </div>
 
-        <button type="submit">Enviar pedido</button>
-    </form>
+                        <button type="submit" class="btn btn-plaza btn-lg w-100 py-3">
+                            <i class="bi bi-send me-2"></i> Confirmar pedido
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-    <p><a asp-action="Listar">Volver al catálogo</a></p>
-</body>
-
-</html>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
